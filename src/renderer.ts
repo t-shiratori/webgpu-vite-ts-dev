@@ -1,13 +1,14 @@
-import { quadVertexCount } from './geometry'
+import { quadIndexArray, quadVertexCount } from './geometry'
 
 type TRenderArgs = {
   context: GPUCanvasContext
   pipeline: GPURenderPipeline
   GPU_DEVICE: GPUDevice
   verticesBuffer: GPUBuffer
+  indicesBuffer: GPUBuffer
 }
 
-export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer }: TRenderArgs) => {
+export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = context.getCurrentTexture().createView()
 
@@ -25,7 +26,8 @@ export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer }: TRen
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
   passEncoder.setVertexBuffer(0, verticesBuffer)
-  passEncoder.draw(quadVertexCount, 1, 0, 0)
+  passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
+  passEncoder.drawIndexed(quadIndexArray.length)
   passEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

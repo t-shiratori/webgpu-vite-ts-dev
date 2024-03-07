@@ -1,4 +1,4 @@
-import { quadIndexArray, quadVertexCount } from './geometry'
+import { quadIndexArray } from './geometry'
 
 type TRenderArgs = {
   context: GPUCanvasContext

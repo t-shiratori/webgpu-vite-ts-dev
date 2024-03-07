@@ -1,5 +1,6 @@
-import { vertWGSL, fragWGSL } from './shader.ts'
 import { quadVertexSize, quadPositionOffset, quadColorOffset } from './geometry.ts'
+import vertexWGSL from './shader/vertex.wgsl?raw'
+import fragmentWGSL from './shader/fragment.wgsl?raw'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
@@ -11,7 +12,7 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
     layout: 'auto',
     vertex: {
       module: GPU_DEVICE.createShaderModule({
-        code: vertWGSL,
+        code: vertexWGSL,
       }),
       entryPoint: 'main',
       buffers: [
@@ -36,7 +37,7 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
     },
     fragment: {
       module: GPU_DEVICE.createShaderModule({
-        code: fragWGSL,
+        code: fragmentWGSL,
       }),
       entryPoint: 'main',
       targets: [

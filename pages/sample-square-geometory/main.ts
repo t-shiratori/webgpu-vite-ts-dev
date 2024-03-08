@@ -50,8 +50,11 @@ initialize()
     /**
      * Start Animation
      * --------------------------------------*/
-
-    requestAnimationFrame(() => renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer }))
+    const loop = () => {
+      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer })
+      requestAnimationFrame(loop)
+    }
+    loop()
   })
   .catch((error) => {
     console.error(error)

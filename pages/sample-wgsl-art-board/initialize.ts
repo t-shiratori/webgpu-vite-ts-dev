@@ -21,8 +21,8 @@ export const initialize = async () => {
     canvas.width = window.innerHeight
     canvas.height = window.innerWidth
   }
-
   window.onresize = reportWindowSize
+  window.dispatchEvent(new Event('resize'))
 
   return {
     GPU_ADAPTER,

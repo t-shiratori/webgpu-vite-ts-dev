@@ -15,7 +15,11 @@ struct FragmentInputs {
 @fragment
 fn main(input: FragmentInputs) -> @location(0) vec4<f32> {
 
-    let uv = (input.position.xy / uniforms.window_size.xy) ;
+    //let uv = (input.position.xy * 2.0 - uniforms.window_size.xy) / min(uniforms.window_size.x, uniforms.window_size.y);
+    let uv0 = input.position.xy / uniforms.window_size.xy * 2.0 - 1.0 ;
+    let uv1 = vec2(uv0.x, uv0.y * uniforms.window_size.x / uniforms.window_size.y);
 
-    return vec4<f32>(uv.x, uv.y, 0.0, 1.0);
+    let d = length(uv1);
+
+    return vec4<f32>(d, d, d, 1.0);
 }

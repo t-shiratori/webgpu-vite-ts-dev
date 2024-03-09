@@ -1,6 +1,6 @@
-import { quadVertexSize, quadPositionOffset, quadColorOffset } from './geometry.ts'
 import vertexWGSL from './shader/vertex.wgsl?raw'
 import fragmentWGSL from './shader/fragment.wgsl?raw'
+import { cubeColorOffset, cubePositionOffset, cubeVertexSize } from './geometry'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
@@ -17,18 +17,18 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
       entryPoint: 'main',
       buffers: [
         {
-          arrayStride: quadVertexSize,
+          arrayStride: cubeVertexSize,
           attributes: [
             {
               // position
               shaderLocation: 0,
-              offset: quadPositionOffset,
+              offset: cubePositionOffset,
               format: 'float32x4',
             },
             {
               // color
               shaderLocation: 1,
-              offset: quadColorOffset,
+              offset: cubeColorOffset,
               format: 'float32x4',
             },
           ],

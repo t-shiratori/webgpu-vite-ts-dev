@@ -1,14 +1,23 @@
-import { quadIndexArray } from './geometry'
+import { cubeVertexCount } from './geometry'
+import { getTransformationMatrix } from './getTransformationMatrix'
 
 type TRenderArgs = {
   context: GPUCanvasContext
   pipeline: GPURenderPipeline
   GPU_DEVICE: GPUDevice
   verticesBuffer: GPUBuffer
-  indicesBuffer: GPUBuffer
+  uniformBuffer: GPUBuffer
+  uniformBindGroup: GPUBindGroup
 }
 
-export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer }: TRenderArgs) => {
+export const renderer = ({
+  context,
+  pipeline,
+  GPU_DEVICE,
+  verticesBuffer,
+  uniformBuffer,
+  uniformBindGroup,
+}: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = context.getCurrentTexture().createView()
 
@@ -23,11 +32,15 @@ export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer, indice
     ],
   }
 
+  getTransformationMatrix({ uniformBuffer, GPU_DEVICE })
+
+  //console.log({ uniformBuffer })
+
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
+  passEncoder.setBindGroup(0, uniformBindGroup)
   passEncoder.setVertexBuffer(0, verticesBuffer)
-  passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
-  passEncoder.drawIndexed(quadIndexArray.length)
+  passEncoder.draw(cubeVertexCount)
   passEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

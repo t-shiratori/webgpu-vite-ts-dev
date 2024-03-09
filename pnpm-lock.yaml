@@ -17,6 +17,9 @@ devDependencies:
   vite:
     specifier: ^5.1.4
     version: 5.1.5
+  wgpu-matrix:
+    specifier: ^2.5.1
+    version: 2.5.1
 
 packages:
 
@@ -470,4 +473,8 @@ packages:
       rollup: 4.12.1
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
+
+  /wgpu-matrix@2.5.1:
+    resolution: {integrity: sha512-fEKK2Hm3JW0KEko2CdrKEg4d81KBKU8UXGhX0kb//3s0A1MrXFG37jzCbvuRdx0XtBs0923oFvSjevwNI5G4Eg==}
     dev: true

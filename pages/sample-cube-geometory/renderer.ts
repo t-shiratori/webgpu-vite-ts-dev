@@ -32,7 +32,7 @@ export const renderer = ({
     ],
   }
 
-  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE })
+  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, context })
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)

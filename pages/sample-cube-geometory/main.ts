@@ -60,11 +60,20 @@ initialize()
     })
 
     /**
+     * 深度バッファ
+     */
+    const depthTexture = GPU_DEVICE.createTexture({
+      size: [context.canvas.width, context.canvas.height],
+      format: 'depth24plus',
+      usage: GPUTextureUsage.RENDER_ATTACHMENT,
+    })
+
+    /**
      * Start Animation
      * --------------------------------------*/
 
     const loop = () => {
-      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup })
+      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, depthTexture })
       requestAnimationFrame(loop)
     }
     loop()

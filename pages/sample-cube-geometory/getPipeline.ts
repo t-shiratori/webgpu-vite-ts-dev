@@ -49,5 +49,10 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
     primitive: {
       topology: 'triangle-list',
     },
+    depthStencil: {
+      depthWriteEnabled: true,
+      depthCompare: 'less',
+      format: 'depth24plus',
+    },
   })
 }

@@ -8,6 +8,7 @@ type TRenderArgs = {
   verticesBuffer: GPUBuffer
   uniformBuffer: GPUBuffer
   uniformBindGroup: GPUBindGroup
+  depthTexture: GPUTexture
 }
 
 export const renderer = ({
@@ -17,6 +18,7 @@ export const renderer = ({
   verticesBuffer,
   uniformBuffer,
   uniformBindGroup,
+  depthTexture,
 }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = context.getCurrentTexture().createView()
@@ -30,6 +32,12 @@ export const renderer = ({
         storeOp: 'store',
       },
     ],
+    depthStencilAttachment: {
+      view: depthTexture.createView(),
+      depthClearValue: 1.0,
+      depthLoadOp: 'clear',
+      depthStoreOp: 'store',
+    },
   }
 
   writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, context })

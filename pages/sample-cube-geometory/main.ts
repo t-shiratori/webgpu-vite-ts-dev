@@ -29,7 +29,7 @@ initialize()
     verticesBuffer.unmap()
 
     /**
-     * uniformBuffer Index Buffer
+     * Setting Uniform Buffer
      * --------------------------------------*/
 
     const uniformBuffer = GPU_DEVICE.createBuffer({
@@ -67,11 +67,8 @@ initialize()
       renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup })
       requestAnimationFrame(loop)
     }
-    //loop()
-    renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup })
+    loop()
   })
   .catch((error) => {
     console.error(error)
   })
-
-//requestAnimationFrame(() => setInterval(() => console.log('hoge', 10000)))

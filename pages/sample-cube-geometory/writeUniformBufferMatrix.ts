@@ -5,7 +5,7 @@ type TArgs = {
   GPU_DEVICE: GPUDevice
 }
 
-export const getTransformationMatrix = ({ uniformBuffer, GPU_DEVICE }: TArgs) => {
+export const writeUniformBufferMatrix = ({ uniformBuffer, GPU_DEVICE }: TArgs) => {
   /**
    * Perspective
    * --------------------------------------*/
@@ -16,7 +16,6 @@ export const getTransformationMatrix = ({ uniformBuffer, GPU_DEVICE }: TArgs) =>
   const near = 0.1
   const far = 1000
   const perspective = mat4.perspective(fov, aspect, near, far) as Float32Array
-  console.log({ perspective })
   GPU_DEVICE.queue.writeBuffer(
     uniformBuffer,
     4 * 16 * 0,

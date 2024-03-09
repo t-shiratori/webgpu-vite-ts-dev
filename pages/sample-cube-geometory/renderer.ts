@@ -1,5 +1,5 @@
 import { cubeVertexCount } from './geometry'
-import { getTransformationMatrix } from './getTransformationMatrix'
+import { writeUniformBufferMatrix } from './writeUniformBufferMatrix'
 
 type TRenderArgs = {
   context: GPUCanvasContext
@@ -32,9 +32,7 @@ export const renderer = ({
     ],
   }
 
-  getTransformationMatrix({ uniformBuffer, GPU_DEVICE })
-
-  //console.log({ uniformBuffer })
+  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE })
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)

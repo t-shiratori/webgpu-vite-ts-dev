@@ -25,6 +25,8 @@ initialize()
       mappedAtCreation: true,
     })
 
+    // バッファにデータをセットする
+
     new Float32Array(verticesBuffer.getMappedRange()).set(squareVertexArray)
     verticesBuffer.unmap()
 
@@ -37,6 +39,8 @@ initialize()
       usage: GPUBufferUsage.INDEX,
       mappedAtCreation: true,
     })
+
+    // バッファにデータをセットする
 
     new Uint16Array(indicesBuffer.getMappedRange()).set(squareIndexArray)
     indicesBuffer.unmap()

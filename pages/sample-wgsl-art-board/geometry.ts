@@ -1,17 +1,15 @@
-const bytes = 4
+const bytes = 4 // 1つの値の容量
 
-export const quadVertexSize = bytes * 8 // Byte size of a vertex.
-export const quadPositionOffset = bytes * 0 // Byte offset of quad vertex position attribute.
-export const quadColorOffset = bytes * 4 // Byte offset of quad vertex color attribute.
-export const quadVertexCount = 4 // Number of vertices in the quad.
+export const squareVertexSize = bytes * 2 // squareVertexArray内の各頂点ごとのスキップサイズ
+export const squarePositionOffset = bytes * 0 // squareVertexArray内の各頂点ごとのスキップサイズ
 
 // prettier-ignore
-export const quadVertexArray = new Float32Array([
-    // float4 position, float4 color
-    -1,  1, 0, 1,  0, 1, 0, 1,
-    -1, -1, 0, 1,  0, 0, 0, 1,
-     1, -1, 0, 1,  1, 0, 0, 1,
-     1,  1, 0, 1,  1, 1, 0, 1,
+export const squareVertexArray = new Float32Array([
+    // float4 position
+    -1,  1,
+    -1, -1,
+     1, -1,
+     1,  1,
   ]);
 
-export const quadIndexArray = new Uint16Array([0, 1, 2, 0, 2, 3])
+export const squareIndexArray = new Uint16Array([0, 1, 2, 0, 2, 3]) // 4つの頂点のインデックス順を指定

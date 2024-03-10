@@ -8,7 +8,6 @@ struct Uniforms {
 
 
 struct FragmentInputs {
-    @location(0) fragColor: vec4<f32>,
     @builtin(position) position : vec4<f32>,
 };
 
@@ -28,26 +27,12 @@ fn palette2(t: f32) -> vec3<f32> {
 @fragment
 fn main(input: FragmentInputs) -> @location(0) vec4<f32> {
 
-    //let uv = (input.position.xy * 2.0 - uniforms.window_size.xy) / min(uniforms.window_size.x, uniforms.window_size.y);
-    let uv0 = input.position.xy / uniforms.window_size.xy * 2.0 - 1.0 ;
-    let uv1 = vec2(uv0.x, uv0.y * uniforms.window_size.x / uniforms.window_size.y);
+    let uv0 = (input.position.xy * 2.0 - uniforms.window_size.xy) / max(uniforms.window_size.x, uniforms.window_size.y);
+    //let uv0 = input.position.xy / uniforms.window_size.xy * 2.0 - 1.0 ;
+    //let uv1 = vec2(uv0.x, uv0.y * uniforms.window_size.x / uniforms.window_size.y);
+    //let uv1 = vec2(uv0.x * uniforms.window_size.y / uniforms.window_size.x, uv0.y);
 
-    let uv2 = fract(uv1);
+    let d0 = length(uv0);
 
-    
-
-    let d0 = length(uv2);
-
-
-    let col0 = palette2(d0 + uniforms.time);
-
-
-    let d1 = sin(d0 * 8 + uniforms.time) / 8;
-    let d2 = abs(d1);
-    let d3 = 0.02 / d2;
-
-    let col1 = col0 * d3;
-
-
-    return vec4<f32>(col1, 1.0);
+    return vec4<f32>(0, d0, 0 , 1.0);
 }

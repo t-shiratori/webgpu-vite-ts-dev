@@ -1,4 +1,4 @@
-import { quadIndexArray } from './geometry'
+import { squareIndexArray } from './geometry'
 import { writeUniformBuffer } from './writeUniformBuffer'
 
 type TRenderArgs = {
@@ -41,7 +41,7 @@ export const renderer = ({
   passEncoder.setBindGroup(0, uniformBindGroup)
   passEncoder.setVertexBuffer(0, verticesBuffer)
   passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
-  passEncoder.drawIndexed(quadIndexArray.length)
+  passEncoder.drawIndexed(squareIndexArray.length)
   passEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

@@ -1,35 +1,30 @@
 import vertexWGSL from './shader/vertex.wgsl?raw'
 import fragmentWGSL from './shader/fragment.wgsl?raw'
-import { quadColorOffset, quadPositionOffset, quadVertexSize } from './geometry'
+import { squarePositionOffset, squareVertexSize } from './geometry'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
-  presentationFormat: GPUTextureFormat
+  contextFormat: GPUTextureFormat
 }
 
-export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs) => {
+export const getPipeline = ({ GPU_DEVICE, contextFormat }: TGetPipelineArgs) => {
   return GPU_DEVICE.createRenderPipeline({
     layout: 'auto',
     vertex: {
       module: GPU_DEVICE.createShaderModule({
+        label: 'vertex shader',
         code: vertexWGSL,
       }),
       entryPoint: 'main',
       buffers: [
         {
-          arrayStride: quadVertexSize,
+          arrayStride: squareVertexSize,
           attributes: [
             {
               // position
               shaderLocation: 0,
-              offset: quadPositionOffset,
-              format: 'float32x4',
-            },
-            {
-              // color
-              shaderLocation: 1,
-              offset: quadColorOffset,
-              format: 'float32x4',
+              offset: squarePositionOffset,
+              format: 'float32x2',
             },
           ],
         },
@@ -37,12 +32,13 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
     },
     fragment: {
       module: GPU_DEVICE.createShaderModule({
+        label: 'fragment shader',
         code: fragmentWGSL,
       }),
       entryPoint: 'main',
       targets: [
         {
-          format: presentationFormat,
+          format: contextFormat,
         },
       ],
     },

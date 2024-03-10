@@ -1,7 +1,7 @@
 import { cubeVertexArray, uniformBufferSize } from './geometry.ts'
 import { getPipeline } from './getPipeline.ts'
 import { initialize } from './initialize.ts'
-import { renderer } from './renderer.ts'
+import { render } from './render.ts'
 
 initialize()
   .then((result) => {
@@ -73,7 +73,7 @@ initialize()
      * --------------------------------------*/
 
     const loop = () => {
-      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, depthTexture })
+      render({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, depthTexture })
       requestAnimationFrame(loop)
     }
     loop()

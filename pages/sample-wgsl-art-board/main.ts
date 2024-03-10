@@ -1,7 +1,7 @@
 import { squareIndexArray, squareVertexArray } from './geometry.ts'
 import { getPipeline } from './getPipeline.ts'
 import { initialize } from './initialize.ts'
-import { renderer } from './renderer.ts'
+import { render } from './render.ts'
 import { uniformBufferSize } from './uniform.ts'
 
 initialize()
@@ -81,7 +81,7 @@ initialize()
      * --------------------------------------*/
 
     const loop = () => {
-      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, indicesBuffer })
+      render({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, indicesBuffer })
       requestAnimationFrame(loop)
     }
     loop()

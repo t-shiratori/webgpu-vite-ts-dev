@@ -1,5 +1,5 @@
-import { cubeVertexCount } from './geometry'
-import { writeUniformBufferMatrix } from './writeUniformBufferMatrix'
+import { squareIndexArray } from './geometry'
+import { writeUniformBuffer } from './writeUniformBuffer'
 
 type TRenderArgs = {
   context: GPUCanvasContext
@@ -8,17 +8,17 @@ type TRenderArgs = {
   verticesBuffer: GPUBuffer
   uniformBuffer: GPUBuffer
   uniformBindGroup: GPUBindGroup
-  depthTexture: GPUTexture
+  indicesBuffer: GPUBuffer
 }
 
-export const renderer = ({
+export const render = ({
   context,
   pipeline,
   GPU_DEVICE,
   verticesBuffer,
   uniformBuffer,
   uniformBindGroup,
-  depthTexture,
+  indicesBuffer,
 }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = context.getCurrentTexture().createView()
@@ -32,21 +32,16 @@ export const renderer = ({
         storeOp: 'store',
       },
     ],
-    depthStencilAttachment: {
-      view: depthTexture.createView(),
-      depthClearValue: 1.0,
-      depthLoadOp: 'clear',
-      depthStoreOp: 'store',
-    },
   }
 
-  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, context })
+  writeUniformBuffer({ uniformBuffer, GPU_DEVICE, context })
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
   passEncoder.setBindGroup(0, uniformBindGroup)
   passEncoder.setVertexBuffer(0, verticesBuffer)
-  passEncoder.draw(cubeVertexCount)
+  passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
+  passEncoder.drawIndexed(squareIndexArray.length)
   passEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

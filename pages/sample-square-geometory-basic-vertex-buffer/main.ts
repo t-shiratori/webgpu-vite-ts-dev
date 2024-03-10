@@ -1,7 +1,7 @@
 import { squareVertexArray } from './geometry.ts'
 import { getPipeline } from './getPipeline.ts'
 import { initialize } from './initialize.ts'
-import { renderer } from './renderer.ts'
+import { render } from './render.ts'
 
 initialize()
   .then((result) => {
@@ -38,7 +38,7 @@ initialize()
      * Start Animation
      * --------------------------------------*/
     const loop = () => {
-      renderer({ context, pipeline, GPU_DEVICE, verticesBuffer })
+      render({ context, pipeline, GPU_DEVICE, verticesBuffer })
       requestAnimationFrame(loop)
     }
     loop()

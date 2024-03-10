@@ -8,7 +8,7 @@ type TRenderArgs = {
   indicesBuffer: GPUBuffer
 }
 
-export const renderer = ({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer }: TRenderArgs) => {
+export const render = ({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = context.getCurrentTexture().createView()
 

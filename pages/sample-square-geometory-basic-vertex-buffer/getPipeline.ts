@@ -21,9 +21,9 @@ export const getPipeline = ({ GPU_DEVICE, canvasFormat }: TGetPipelineArgs) => {
           arrayStride: squareVertexSkipSize,
           attributes: [
             {
-              shaderLocation: 0, // vertex.wgsl の @location(0)　に対応
+              shaderLocation: 0, // vertex.wgslのmain関数の@location(0)に対応
               offset: squareVertexPositionSlotOffset,
-              format: 'float32x2', // 各頂点のポジションデータの容量に合わせたフォーマット。ここでは4byteが２つで一つの頂点なので'float32x2'を指定。
+              format: 'float32x2', // 各頂点の座標データの容量に合わせたフォーマット。ここでは4byteが２つで一つの座標なので'float32x2'を指定。
             },
           ],
         },

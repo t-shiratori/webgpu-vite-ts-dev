@@ -1,13 +1,14 @@
-export const cubeVertexSize = 4 * 8 // Byte size of one vertex.
-export const cubePositionOffset = 4 * 0
-export const cubeColorOffset = 4 * 4 // Byte offset of cube vertex color attribute.
+const byteSize = 4 // 1つの値の容量
+export const cubeVertexSize = byteSize * 8 // 各頂点ごとのスキップサイズ、頂点座標とカラー値を合わせて8個
+export const cubePositionOffset = byteSize * 0 // cubeVertexArray内の頂点座標のオフセットの位置
+export const cubeColorOffset = byteSize * 4 // cubeVertexArray内のカラー値のオフセットの位置
 export const cubeVertexCount = 36
 
-export const uniformBufferSize = 4 /* bytes */ * 16 * 3 // 4x4 matrix * 3
+export const uniformBufferSize = byteSize /* bytes */ * 16 * 3 // 4x4 matrix * 3
 
 // prettier-ignore
 export const cubeVertexArray = new Float32Array([
-  // float4 position, float4 color
+  // float4 position[x, y], float4 color(r,g,b,a)
   1, -1, 1, 1,   1, 0, 1, 1,
   -1, -1, 1, 1,  0, 0, 1, 1,
   -1, -1, -1, 1, 0, 0, 0, 1,

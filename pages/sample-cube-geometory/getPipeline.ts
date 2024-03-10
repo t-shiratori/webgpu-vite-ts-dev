@@ -4,10 +4,10 @@ import { cubeColorOffset, cubePositionOffset, cubeVertexSize } from './geometry'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
-  presentationFormat: GPUTextureFormat
+  contextFormat: GPUTextureFormat
 }
 
-export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs) => {
+export const getPipeline = ({ GPU_DEVICE, contextFormat }: TGetPipelineArgs) => {
   return GPU_DEVICE.createRenderPipeline({
     layout: 'auto',
     vertex: {
@@ -42,7 +42,7 @@ export const getPipeline = ({ GPU_DEVICE, presentationFormat }: TGetPipelineArgs
       entryPoint: 'main',
       targets: [
         {
-          format: presentationFormat,
+          format: contextFormat,
         },
       ],
     },

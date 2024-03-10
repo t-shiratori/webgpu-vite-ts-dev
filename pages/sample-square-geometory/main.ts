@@ -7,11 +7,11 @@ initialize()
   .then((result) => {
     const { GPU_DEVICE, context } = result
 
-    const presentationFormat = navigator.gpu.getPreferredCanvasFormat()
+    const contextFormat = navigator.gpu.getPreferredCanvasFormat()
 
     context.configure({
       device: GPU_DEVICE,
-      format: presentationFormat,
+      format: contextFormat,
       alphaMode: 'opaque',
     })
 
@@ -45,7 +45,7 @@ initialize()
      * Create Pipeline
      * --------------------------------------*/
 
-    const pipeline = getPipeline({ GPU_DEVICE, presentationFormat })
+    const pipeline = getPipeline({ GPU_DEVICE, contextFormat })
 
     /**
      * Start Animation

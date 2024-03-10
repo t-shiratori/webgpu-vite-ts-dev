@@ -1,6 +1,6 @@
 const byteSize = 4 // 1つの値の容量
-export const squareVertexSkipSize = byteSize * 2 // 各頂点ごとのスキップサイズ
-export const squareVertexPositionSlotOffset = 0 // squareVertexArray配列内の頂点座標のオフセット位置
+export const squareVertexSkipSize = byteSize * 2 // squareVertexArray内の各頂点ごとのスキップサイズ
+export const squareVertexPositionSlotOffset = 0 // squareVertexArray内の頂点座標のオフセット位置
 
 // prettier-ignore
 export const squareVertexArray = new Float32Array([

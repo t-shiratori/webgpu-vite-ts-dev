@@ -1,5 +1,5 @@
 const byteSize = 4 // 1つの値の容量
-export const cubeVertexSize = byteSize * 8 // 各頂点ごとのスキップサイズ、頂点座標とカラー値を合わせて8個
+export const cubeVertexSize = byteSize * 8 // cubeVertexArray内の各頂点ごとのスキップサイズ、頂点座標とカラー値を合わせて8個
 export const cubePositionOffset = byteSize * 0 // cubeVertexArray内の頂点座標のオフセットの位置
 export const cubeColorOffset = byteSize * 4 // cubeVertexArray内のカラー値のオフセットの位置
 export const cubeVertexCount = 36

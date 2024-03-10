@@ -38,7 +38,7 @@ export const render = ({
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
-  passEncoder.setBindGroup(0, uniformBindGroup)
+  passEncoder.setBindGroup(0, uniformBindGroup) // 第一引数は fragment.wgsl の @group(0) に対応
   passEncoder.setVertexBuffer(0, verticesBuffer)
   passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
   passEncoder.drawIndexed(squareIndexArray.length)

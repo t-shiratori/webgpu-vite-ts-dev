@@ -13,7 +13,7 @@ export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, context }: TArgs
    * Time
    * --------------------------------------*/
 
-  const millis = ((Date.now() - start) / 1000) % Math.PI
+  const millis = (Date.now() - start) / 1000
   uniformValues.set([millis], timeUniformOffset)
 
   /**

@@ -2,7 +2,7 @@ export const initialize = async () => {
   const GPU_ADAPTER = await navigator.gpu.requestAdapter()
   const GPU_DEVICE = await GPU_ADAPTER!.requestDevice()
   const canvas: HTMLCanvasElement | null = document.querySelector('#world')
-  const context = canvas?.getContext('webgpu')
+  const GPU_CANVAS_CONTEXT = canvas?.getContext('webgpu')
 
   if (!GPU_ADAPTER) {
     return Promise.reject(new Error('Could not find GPU adapter'))
@@ -12,8 +12,8 @@ export const initialize = async () => {
     return Promise.reject(new Error('Could not find GPU device'))
   }
 
-  if (!context) {
-    return Promise.reject(new Error('Could not find context'))
+  if (!GPU_CANVAS_CONTEXT) {
+    return Promise.reject(new Error('Could not find GPU_CANVAS_CONTEXT'))
   }
 
   const reportWindowSize = () => {
@@ -27,6 +27,6 @@ export const initialize = async () => {
   return {
     GPU_ADAPTER,
     GPU_DEVICE,
-    context,
+    GPU_CANVAS_CONTEXT,
   }
 }

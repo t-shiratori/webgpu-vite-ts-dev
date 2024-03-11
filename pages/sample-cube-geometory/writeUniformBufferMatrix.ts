@@ -3,15 +3,15 @@ import { mat4 } from 'wgpu-matrix'
 type TArgs = {
   uniformBuffer: GPUBuffer
   GPU_DEVICE: GPUDevice
-  context: GPUCanvasContext
+  GPU_CANVAS_CONTEXT: GPUCanvasContext
 }
 
-export const writeUniformBufferMatrix = ({ uniformBuffer, GPU_DEVICE, context }: TArgs) => {
+export const writeUniformBufferMatrix = ({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT }: TArgs) => {
   /**
    * Perspective
    * --------------------------------------*/
-  const width = context.canvas.width
-  const height = context.canvas.height
+  const width = GPU_CANVAS_CONTEXT.canvas.width
+  const height = GPU_CANVAS_CONTEXT.canvas.height
   const fov = (60 * Math.PI) / 180
   const aspect = width / height
   const near = 0.1

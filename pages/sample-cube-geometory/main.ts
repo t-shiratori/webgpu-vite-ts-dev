@@ -5,11 +5,11 @@ import { render } from './render.ts'
 
 initialize()
   .then((result) => {
-    const { GPU_DEVICE, context } = result
+    const { GPU_DEVICE, GPU_CANVAS_CONTEXT } = result
 
     const contextFormat = navigator.gpu.getPreferredCanvasFormat()
 
-    context.configure({
+    GPU_CANVAS_CONTEXT.configure({
       device: GPU_DEVICE,
       format: contextFormat,
       alphaMode: 'opaque',
@@ -64,7 +64,7 @@ initialize()
      * 深度バッファ
      */
     const depthTexture = GPU_DEVICE.createTexture({
-      size: [context.canvas.width, context.canvas.height],
+      size: [GPU_CANVAS_CONTEXT.canvas.width, GPU_CANVAS_CONTEXT.canvas.height],
       format: 'depth24plus',
       usage: GPUTextureUsage.RENDER_ATTACHMENT,
     })
@@ -74,7 +74,15 @@ initialize()
      * --------------------------------------*/
 
     const loop = () => {
-      render({ context, pipeline, GPU_DEVICE, verticesBuffer, uniformBuffer, uniformBindGroup, depthTexture })
+      render({
+        GPU_CANVAS_CONTEXT,
+        pipeline,
+        GPU_DEVICE,
+        verticesBuffer,
+        uniformBuffer,
+        uniformBindGroup,
+        depthTexture,
+      })
       requestAnimationFrame(loop)
     }
     loop()

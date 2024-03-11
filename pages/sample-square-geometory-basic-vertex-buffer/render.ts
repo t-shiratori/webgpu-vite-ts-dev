@@ -1,15 +1,15 @@
 import { squareVertexArray } from './geometry'
 
 type TRenderArgs = {
-  context: GPUCanvasContext
+  GPU_CANVAS_CONTEXT: GPUCanvasContext
   pipeline: GPURenderPipeline
   GPU_DEVICE: GPUDevice
   verticesBuffer: GPUBuffer
 }
 
-export const render = ({ context, pipeline, GPU_DEVICE, verticesBuffer }: TRenderArgs) => {
+export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffer }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
-  const textureView = context.getCurrentTexture().createView()
+  const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
   const renderPassDescriptor: GPURenderPassDescriptor = {
     colorAttachments: [

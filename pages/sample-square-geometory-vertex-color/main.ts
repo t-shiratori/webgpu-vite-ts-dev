@@ -5,11 +5,11 @@ import { render } from './render.ts'
 
 initialize()
   .then((result) => {
-    const { GPU_DEVICE, context } = result
+    const { GPU_DEVICE, GPU_CANVAS_CONTEXT } = result
 
     const contextFormat = navigator.gpu.getPreferredCanvasFormat()
 
-    context.configure({
+    GPU_CANVAS_CONTEXT.configure({
       device: GPU_DEVICE,
       format: contextFormat,
       alphaMode: 'opaque',
@@ -55,7 +55,7 @@ initialize()
      * Start Animation
      * --------------------------------------*/
     const loop = () => {
-      render({ context, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer })
+      render({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffer, indicesBuffer })
       requestAnimationFrame(loop)
     }
     loop()

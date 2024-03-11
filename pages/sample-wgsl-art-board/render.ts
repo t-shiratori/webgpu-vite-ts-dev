@@ -2,7 +2,7 @@ import { squareIndexArray } from './geometry'
 import { writeUniformBuffer } from './writeUniformBuffer'
 
 type TRenderArgs = {
-  context: GPUCanvasContext
+  GPU_CANVAS_CONTEXT: GPUCanvasContext
   pipeline: GPURenderPipeline
   GPU_DEVICE: GPUDevice
   verticesBuffer: GPUBuffer
@@ -12,7 +12,7 @@ type TRenderArgs = {
 }
 
 export const render = ({
-  context,
+  GPU_CANVAS_CONTEXT,
   pipeline,
   GPU_DEVICE,
   verticesBuffer,
@@ -21,7 +21,7 @@ export const render = ({
   indicesBuffer,
 }: TRenderArgs) => {
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
-  const textureView = context.getCurrentTexture().createView()
+  const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
   const renderPassDescriptor: GPURenderPassDescriptor = {
     colorAttachments: [
@@ -34,7 +34,7 @@ export const render = ({
     ],
   }
 
-  writeUniformBuffer({ uniformBuffer, GPU_DEVICE, context })
+  writeUniformBuffer({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)

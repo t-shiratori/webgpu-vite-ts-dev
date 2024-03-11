@@ -3,12 +3,12 @@ import { timeUniformOffset, uniformValues, windowSizeUniformOffset } from './uni
 type TArgs = {
   uniformBuffer: GPUBuffer
   GPU_DEVICE: GPUDevice
-  context: GPUCanvasContext
+  GPU_CANVAS_CONTEXT: GPUCanvasContext
 }
 
 const start = Date.now()
 
-export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, context }: TArgs) => {
+export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT }: TArgs) => {
   /**
    * Time
    * --------------------------------------*/
@@ -19,8 +19,8 @@ export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, context }: TArgs
   /**
    * Window Size
    * --------------------------------------*/
-  const width = context.canvas.width
-  const height = context.canvas.height
+  const width = GPU_CANVAS_CONTEXT.canvas.width
+  const height = GPU_CANVAS_CONTEXT.canvas.height
   uniformValues.set([width, height], windowSizeUniformOffset)
 
   //console.log(uniformValues)

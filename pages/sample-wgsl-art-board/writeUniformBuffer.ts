@@ -23,8 +23,6 @@ export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTE
   const height = GPU_CANVAS_CONTEXT.canvas.height
   uniformValues.set([width, height], windowSizeUniformOffset)
 
-  //console.log(uniformValues)
-
   // copy the values from JavaScript to the GPU
   GPU_DEVICE.queue.writeBuffer(uniformBuffer, 0, uniformValues)
 }

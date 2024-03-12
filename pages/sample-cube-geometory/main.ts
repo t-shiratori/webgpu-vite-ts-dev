@@ -17,7 +17,7 @@ initialize()
       mappedAtCreation: true,
     })
 
-    // バッファにデータをセットする
+    // Set data into buffer
     new Float32Array(verticesBuffer.getMappedRange()).set(cubeVertexArray)
     verticesBuffer.unmap()
 

@@ -4,8 +4,8 @@ const bytes = 4
 /** squareVertexArray内の各頂点ごとのスキップサイズ */
 export const squareVertexSize = bytes * 2
 
-/** squareVertexArray内の各頂点ごとのスキップサイズ */
-export const squarePositionOffset = bytes * 0
+/** squareVertexArray内の各頂点データのオフセットの位置 */
+export const squarePositionOffset = 0
 
 /**
  * 座標データ
@@ -19,5 +19,8 @@ export const squareVertexArray = new Float32Array([
      1,  1,
   ]);
 
-/** 頂点インデックス用のデータ */
-export const squareIndexArray = new Uint16Array([0, 1, 2, 0, 2, 3]) // 4つの頂点のインデックス順を指定
+/**
+ * 頂点インデックス用のデータ
+ * 4つの頂点のインデックス順を指定
+ */
+export const squareIndexArray = new Uint16Array([0, 1, 2, 0, 2, 3])

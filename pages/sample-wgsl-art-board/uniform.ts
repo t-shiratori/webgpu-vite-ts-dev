@@ -8,8 +8,8 @@ export const uniformBufferSize =
 /** ユニフォームバッファのデータ */
 export const uniformValues = new Float32Array(uniformBufferSize / 4)
 
-/** uniformValues内のtimeデータのオフセットの位置を指定 */
+/** uniformValues内の time データのオフセットの位置を指定 */
 export const timeUniformOffset = 0
 
-/** uniformValues内のwindow_sizeデータのオフセットの位置を指定 */
+/** uniformValues内の screen_size データのオフセットの位置を指定 */
 export const screenSizeUniformOffset = 2 // 1にするとwgslで受け取るときに位置がずれて意図した通りにならない

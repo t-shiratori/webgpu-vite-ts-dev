@@ -45,7 +45,7 @@ fn fragmentMain(input: FragmentInputs) -> @location(0) vec4<f32> {
         // サークルを波紋状にする
         distance = sin(distance * 6 /* 波紋の周期の数 */  + uniforms.time * 1.4 /* 波紋の速さ */ );
         distance = abs(distance);
-        distance = 0.08 / distance; // 波紋のラインの太さ(シャープさ)調整
+        distance = 0.06 / distance; // 波紋のラインの太さ(シャープさ)調整
 
         finalColor += gradationColor * distance;
     }

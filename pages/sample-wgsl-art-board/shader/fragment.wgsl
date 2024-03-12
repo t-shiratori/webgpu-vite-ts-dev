@@ -40,7 +40,7 @@ fn fragmentMain(input: FragmentInputs) -> @location(0) vec4<f32> {
         
         let index = f32(i);
         // スクリーン全体のカラーをグラデーションにする
-        var gradationColor = colorPalette(length(uv0) + index * 0.2 + uniforms.time * 0.5 );
+        var gradationColor = colorPalette(length(uv0) + index * 0.8 + uniforms.time * 0.5 );
 
         // サークルを波紋状にする
         distance = sin(distance * 6 /* 波紋の周期の数 */  + uniforms.time * 1.4 /* 波紋の速さ */ );

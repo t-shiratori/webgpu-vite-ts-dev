@@ -1,6 +1,6 @@
 struct Uniforms {
     time: f32,
-    window_size: vec2<f32>,
+    screen_size: vec2<f32>,
 };
 
 @group(0) @binding(0) var<uniform> uniforms : Uniforms; // uniformBindGroup の layout と binding に対応
@@ -22,8 +22,8 @@ struct FragmentInputs {
 fn main(input: FragmentInputs) -> @location(0) vec4<f32> {
 
     // 座標の正規化
-    var uv = input.position.xy / uniforms.window_size.xy * 2.0 - 1.0 ;
-    uv = vec2(uv.x * uniforms.window_size.y / uniforms.window_size.x, uv.y);
+    var uv = input.position.xy / uniforms.screen_size.xy * 2.0 - 1.0 ;
+    uv = vec2(uv.x * uniforms.screen_size.y / uniforms.screen_size.x, uv.y);
 
     var uv0 = uv;
 

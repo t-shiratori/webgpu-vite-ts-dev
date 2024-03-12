@@ -1,4 +1,4 @@
-import { timeUniformOffset, uniformValues, windowSizeUniformOffset } from './uniform'
+import { timeUniformOffset, uniformValues, screenSizeUniformOffset } from './uniform'
 
 type TArgs = {
   uniformBuffer: GPUBuffer
@@ -17,11 +17,11 @@ export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTE
   uniformValues.set([millis], timeUniformOffset)
 
   /**
-   * Window Size
+   * Canvas Size
    * --------------------------------------*/
   const width = GPU_CANVAS_CONTEXT.canvas.width
   const height = GPU_CANVAS_CONTEXT.canvas.height
-  uniformValues.set([width, height], windowSizeUniformOffset)
+  uniformValues.set([width, height], screenSizeUniformOffset)
 
   // copy the values from JavaScript to the GPU
   GPU_DEVICE.queue.writeBuffer(uniformBuffer, 0, uniformValues)

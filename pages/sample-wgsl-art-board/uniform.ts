@@ -11,5 +11,5 @@ export const uniformValues = new Float32Array(uniformBufferSize / 4)
 /** uniformValues内のtimeデータのオフセットの位置を指定 */
 export const timeUniformOffset = 0
 
-/** uniformValues内のwindowSizeデータのオフセットの位置を指定 */
-export const windowSizeUniformOffset = 2 // 1にするとwgslで受け取るときに位置がずれて意図した通りにならない
+/** uniformValues内のwindow_sizeデータのオフセットの位置を指定 */
+export const screenSizeUniformOffset = 2 // 1にするとwgslで受け取るときに位置がずれて意図した通りにならない

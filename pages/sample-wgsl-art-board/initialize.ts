@@ -13,8 +13,12 @@ export const initialize = async () => {
   }
 
   if (!GPU_CANVAS_CONTEXT) {
-    return Promise.reject(new Error('Could not find GPU_CANVAS_CONTEXT'))
+    return Promise.reject(new Error('Could not find GPU canvas context'))
   }
+
+  /**
+   * コンテキストの設定
+   */
 
   const CANVAS_FORMAT = navigator.gpu.getPreferredCanvasFormat()
 
@@ -23,6 +27,10 @@ export const initialize = async () => {
     format: CANVAS_FORMAT,
     alphaMode: 'opaque',
   })
+
+  /**
+   * リサイズ処理
+   */
 
   const reportWindowSize = () => {
     if (!canvas) return

@@ -4,7 +4,7 @@ struct VertexOutput {
 }
 
 @vertex
-fn main(
+fn vertexMain(
   @location(0) position: vec4<f32>, // Pipeline の shaderLocation: 0 に対応
 ) -> VertexOutput {
 

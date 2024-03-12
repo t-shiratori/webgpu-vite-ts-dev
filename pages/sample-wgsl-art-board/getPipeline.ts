@@ -15,14 +15,14 @@ export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => 
         label: 'vertex shader',
         code: vertexWGSL,
       }),
-      entryPoint: 'main',
+      entryPoint: 'vertexMain',
       buffers: [
         {
           arrayStride: squareVertexSize,
           attributes: [
             {
               // position
-              shaderLocation: 0, // vertex.wgsl main関数の @location(0) に対応
+              shaderLocation: 0, // vertex.wgsl vertexMain関数の @location(0) に対応
               offset: squarePositionOffset,
               format: 'float32x2', // 各頂点の座標データの容量に合わせたフォーマット。ここでは4byteが２つで一つの座標なので'float32x2'を指定。
             },
@@ -35,7 +35,7 @@ export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => 
         label: 'fragment shader',
         code: fragmentWGSL,
       }),
-      entryPoint: 'main',
+      entryPoint: 'fragmentMain',
       targets: [
         {
           format: CANVAS_FORMAT,

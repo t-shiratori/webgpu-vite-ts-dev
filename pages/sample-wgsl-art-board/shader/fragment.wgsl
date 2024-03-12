@@ -19,7 +19,7 @@ struct FragmentInputs {
 };
 
 @fragment
-fn main(input: FragmentInputs) -> @location(0) vec4<f32> {
+fn fragmentMain(input: FragmentInputs) -> @location(0) vec4<f32> {
 
     // 座標の正規化
     var uv = input.position.xy / uniforms.screen_size.xy * 2.0 - 1.0 ;

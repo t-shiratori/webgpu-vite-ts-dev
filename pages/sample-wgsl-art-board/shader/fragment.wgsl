@@ -29,7 +29,7 @@ fn fragmentMain(input: FragmentInputs) -> @location(0) vec4<f32> {
 
     var finalColor = vec3(0.0);
 
-    // fractとの掛け合わせでタイル状の分割を入れ子にしている
+    // fractで作った各タイル内の描画サイクルを増やす
     for (var i: i32 = 0; i < 4 ; i++) {
 
         // スクリーン座標を繰り返す（スクリーン全体をタイル状にを分割する）

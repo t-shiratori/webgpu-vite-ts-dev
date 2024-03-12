@@ -37,12 +37,15 @@ export const render = ({
 
   writeUniformBuffer({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
 
-  const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
-  passEncoder.setPipeline(pipeline)
-  passEncoder.setBindGroup(0, uniformBindGroup) // fragment.wgsl の @group(0) に対応
-  passEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl vertexMain関数の @location(0) に対応
-  passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
-  passEncoder.drawIndexed(squareIndexArray.length)
-  passEncoder.end()
+  const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+  renderPassEncoder.setPipeline(pipeline)
+  renderPassEncoder.setBindGroup(0, uniformBindGroup) // fragment.wgsl の @group(0) に対応
+  renderPassEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl vertexMain関数の @location(0) に対応
+  renderPassEncoder.setIndexBuffer(indicesBuffer, 'uint16')
+  renderPassEncoder.drawIndexed(squareIndexArray.length)
+  renderPassEncoder.end()
+  /**
+   *
+   */
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

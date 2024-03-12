@@ -24,11 +24,11 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
     ],
   }
 
-  const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
-  passEncoder.setPipeline(pipeline)
-  passEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
-  passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
-  passEncoder.drawIndexed(squareIndexArray.length)
-  passEncoder.end()
+  const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+  renderPassEncoder.setPipeline(pipeline)
+  renderPassEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
+  renderPassEncoder.setIndexBuffer(indicesBuffer, 'uint16')
+  renderPassEncoder.drawIndexed(squareIndexArray.length)
+  renderPassEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

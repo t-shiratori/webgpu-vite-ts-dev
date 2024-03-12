@@ -43,11 +43,11 @@ export const render = ({
 
   writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
 
-  const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
-  passEncoder.setPipeline(pipeline)
-  passEncoder.setBindGroup(0, uniformBindGroup) // vertex.wgsl の @group(0) に対応
-  passEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
-  passEncoder.draw(cubeVertexCount)
-  passEncoder.end()
+  const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+  renderPassEncoder.setPipeline(pipeline)
+  renderPassEncoder.setBindGroup(0, uniformBindGroup) // vertex.wgsl の @group(0) に対応
+  renderPassEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
+  renderPassEncoder.draw(cubeVertexCount)
+  renderPassEncoder.end()
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

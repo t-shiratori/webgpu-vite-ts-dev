@@ -8,9 +8,8 @@ type TRenderArgs = {
 }
 
 export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffer }: TRenderArgs) => {
-  // GPUに発行されるコマンドをエンコードするためのエンコーダーを作成
+  /** GPUに発行されるコマンドをエンコードするためのエンコーダーを作成 */
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
-  const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
   /**
    * レンダリングパスを作成し、レンダリングに関する処理の実行コマンドを記録しレンダリングパスを終了します。
@@ -23,7 +22,7 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
     colorAttachments: [
       // fragment.wgsl　fragmentMain関数の戻り値の @location(0) に対応
       {
-        view: textureView,
+        view: GPU_CANVAS_CONTEXT.getCurrentTexture().createView(),
         clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
         loadOp: 'clear',
         storeOp: 'store',

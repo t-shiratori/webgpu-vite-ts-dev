@@ -20,14 +20,15 @@ export const render = ({
   uniformBindGroup,
   depthTexture,
 }: TRenderArgs) => {
+  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
+
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
-  const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
   const renderPassDescriptor: GPURenderPassDescriptor = {
     colorAttachments: [
       // fragment.wgsl　main関数の戻り値の @location(0) に対応
       {
-        view: textureView,
+        view: GPU_CANVAS_CONTEXT.getCurrentTexture().createView(),
         clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
         loadOp: 'clear',
         storeOp: 'store',
@@ -40,8 +41,6 @@ export const render = ({
       depthStoreOp: 'store',
     },
   }
-
-  writeUniformBufferMatrix({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
 
   const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   renderPassEncoder.setPipeline(pipeline)

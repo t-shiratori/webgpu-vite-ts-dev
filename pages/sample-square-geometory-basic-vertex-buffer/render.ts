@@ -12,7 +12,14 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
-  const renderPassDescriptor: GPURenderPassDescriptor = {
+  /**
+   * レンダリングパスを作成し、レンダリングに関する処理の実行コマンドを記録しレンダリングパスを終了します。
+   *
+   * {@link https://codelabs.developers.google.com/your-first-webgpu-app?hl=ja#2}
+   * WebGPU APIのGPURenderPassEncoderインターフェイスは、
+   * GPURenderPipelineによって発行された、頂点とフラグメントシェーダステージの制御に関連するコマンドをエンコードします。
+   */
+  const renderPassEncoder = commandEncoder.beginRenderPass({
     colorAttachments: [
       // fragment.wgsl　fragmentMain関数の戻り値の @location(0) に対応
       {
@@ -22,18 +29,16 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
         storeOp: 'store',
       },
     ],
-  }
-
-  /**
-   *
-   */
-  const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+  })
   renderPassEncoder.setPipeline(pipeline)
   renderPassEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl vertexMain関数の @location(0)　に対応
   renderPassEncoder.draw(squareVertexArray.length / 2)
   renderPassEncoder.end()
 
   /**
+   * レンダリングパスによって記録されたコマンドをコマンドバッファでラップしてGPUに送信します。
+   *
+   * {@link https://codelabs.developers.google.com/your-first-webgpu-app?hl=ja#2}
    * コマンドエンコーダに対して finish() を呼び出して、GPUCommandBuffer を作成します。
    * コマンドバッファは、記録されたコマンドをラップして詳細を隠すためのハンドルです。
    * GPUDevice の queue を使用して、GPU にコマンドバッファを送信します。

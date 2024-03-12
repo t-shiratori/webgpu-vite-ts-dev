@@ -23,7 +23,12 @@ export const render = ({
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
   const textureView = GPU_CANVAS_CONTEXT.getCurrentTexture().createView()
 
-  const renderPassDescriptor: GPURenderPassDescriptor = {
+  writeUniformBuffer({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
+
+  /**
+   * レンダリングパスを作成し、レンダリングに関する処理の実行コマンドを記録しレンダリングパスを終了
+   */
+  const renderPassEncoder = commandEncoder.beginRenderPass({
     colorAttachments: [
       // fragment.wgsl　fragmentMain関数の戻り値の @location(0) に対応
       {
@@ -33,19 +38,16 @@ export const render = ({
         storeOp: 'store',
       },
     ],
-  }
-
-  writeUniformBuffer({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT })
-
-  const renderPassEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+  })
   renderPassEncoder.setPipeline(pipeline)
   renderPassEncoder.setBindGroup(0, uniformBindGroup) // fragment.wgsl の @group(0) に対応
   renderPassEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl vertexMain関数の @location(0) に対応
   renderPassEncoder.setIndexBuffer(indicesBuffer, 'uint16')
   renderPassEncoder.drawIndexed(squareIndexArray.length)
   renderPassEncoder.end()
+
   /**
-   *
+   * ンダリングパスによって記録されたコマンドをコマンドバッファでラップしてGPUに送信
    */
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

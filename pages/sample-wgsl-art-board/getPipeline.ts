@@ -4,10 +4,10 @@ import { squarePositionOffset, squareVertexSize } from './geometry'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
-  contextFormat: GPUTextureFormat
+  CANVAS_FORMAT: GPUTextureFormat
 }
 
-export const getPipeline = ({ GPU_DEVICE, contextFormat }: TGetPipelineArgs) => {
+export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => {
   return GPU_DEVICE.createRenderPipeline({
     layout: 'auto',
     vertex: {
@@ -38,7 +38,7 @@ export const getPipeline = ({ GPU_DEVICE, contextFormat }: TGetPipelineArgs) => 
       entryPoint: 'main',
       targets: [
         {
-          format: contextFormat,
+          format: CANVAS_FORMAT,
         },
       ],
     },

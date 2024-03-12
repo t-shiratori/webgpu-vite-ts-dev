@@ -5,15 +5,7 @@ import { render } from './render.ts'
 
 initialize()
   .then((result) => {
-    const { GPU_DEVICE, GPU_CANVAS_CONTEXT } = result
-
-    const contextFormat = navigator.gpu.getPreferredCanvasFormat()
-
-    GPU_CANVAS_CONTEXT.configure({
-      device: GPU_DEVICE,
-      format: contextFormat,
-      alphaMode: 'opaque',
-    })
+    const { GPU_DEVICE, GPU_CANVAS_CONTEXT, CANVAS_FORMAT } = result
 
     /**
      * Setting Vertex Buffer
@@ -42,7 +34,7 @@ initialize()
      * Create Pipeline
      * --------------------------------------*/
 
-    const pipeline = getPipeline({ GPU_DEVICE, contextFormat })
+    const pipeline = getPipeline({ GPU_DEVICE, CANVAS_FORMAT })
 
     /**
      * Uniform Bind Group

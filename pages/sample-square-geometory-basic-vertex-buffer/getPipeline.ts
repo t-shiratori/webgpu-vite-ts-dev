@@ -4,10 +4,10 @@ import fragmentWGSL from './shader/fragment.wgsl?raw'
 
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
-  canvasFormat: GPUTextureFormat
+  CANVAS_FORMAT: GPUTextureFormat
 }
 
-export const getPipeline = ({ GPU_DEVICE, canvasFormat }: TGetPipelineArgs) => {
+export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => {
   return GPU_DEVICE.createRenderPipeline({
     layout: 'auto',
     vertex: {
@@ -37,7 +37,7 @@ export const getPipeline = ({ GPU_DEVICE, canvasFormat }: TGetPipelineArgs) => {
       entryPoint: 'fragmentMain',
       targets: [
         {
-          format: canvasFormat,
+          format: CANVAS_FORMAT,
         },
       ],
     },

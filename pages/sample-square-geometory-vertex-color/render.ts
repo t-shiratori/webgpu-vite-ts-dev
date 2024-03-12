@@ -14,6 +14,7 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
 
   const renderPassDescriptor: GPURenderPassDescriptor = {
     colorAttachments: [
+      // fragment.wgsl　main関数の戻り値の @location(0) に対応
       {
         view: textureView,
         clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
@@ -25,7 +26,7 @@ export const render = ({ GPU_CANVAS_CONTEXT, pipeline, GPU_DEVICE, verticesBuffe
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
-  passEncoder.setVertexBuffer(0, verticesBuffer)
+  passEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
   passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
   passEncoder.drawIndexed(squareIndexArray.length)
   passEncoder.end()

@@ -25,6 +25,7 @@ export const render = ({
 
   const renderPassDescriptor: GPURenderPassDescriptor = {
     colorAttachments: [
+      // fragment.wgsl　main関数の戻り値の @location(0) に対応
       {
         view: textureView,
         clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
@@ -38,8 +39,8 @@ export const render = ({
 
   const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
   passEncoder.setPipeline(pipeline)
-  passEncoder.setBindGroup(0, uniformBindGroup) // 第一引数は fragment.wgsl の @group(0) に対応
-  passEncoder.setVertexBuffer(0, verticesBuffer)
+  passEncoder.setBindGroup(0, uniformBindGroup) // fragment.wgsl の @group(0) に対応
+  passEncoder.setVertexBuffer(0, verticesBuffer) // vertex.wgsl main関数の @location(0) に対応
   passEncoder.setIndexBuffer(indicesBuffer, 'uint16')
   passEncoder.drawIndexed(squareIndexArray.length)
   passEncoder.end()

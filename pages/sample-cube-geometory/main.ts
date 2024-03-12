@@ -41,10 +41,10 @@ initialize()
      * --------------------------------------*/
 
     const uniformBindGroup = GPU_DEVICE.createBindGroup({
-      layout: pipeline.getBindGroupLayout(0),
+      layout: pipeline.getBindGroupLayout(0), // vertex.wgsl の @group(0) に対応
       entries: [
         {
-          binding: 0, // @binding(0) in shader
+          binding: 0, // vertex.wgsl の @binding(0) に対応
           resource: {
             buffer: uniformBuffer,
           },

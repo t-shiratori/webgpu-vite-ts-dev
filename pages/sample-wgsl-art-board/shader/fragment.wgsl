@@ -3,7 +3,7 @@ struct Uniforms {
     window_size: vec2<f32>,
 };
 
-@group(0) @binding(0) var<uniform> uniforms: Uniforms;
+@group(0) @binding(0) var<uniform> uniforms : Uniforms; // uniformBindGroup の layout と binding に対応
 
 
 fn colorPalette(t: f32) -> vec3<f32> { 
@@ -15,7 +15,7 @@ fn colorPalette(t: f32) -> vec3<f32> {
 }
 
 struct FragmentInputs {
-    @builtin(position) position : vec4<f32>,
+    @builtin(position) position : vec4<f32>, // GLSL の gl_FragCoord に相当
 };
 
 @fragment

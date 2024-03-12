@@ -21,13 +21,13 @@ export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => 
           attributes: [
             {
               // position
-              shaderLocation: 0,
+              shaderLocation: 0, // vertex.wgsl main関数の @location(0) に対応
               offset: cubePositionOffset,
               format: 'float32x4',
             },
             {
               // color
-              shaderLocation: 1,
+              shaderLocation: 1, // vertex.wgsl main関数の @location(1) に対応
               offset: cubeColorOffset,
               format: 'float32x4',
             },

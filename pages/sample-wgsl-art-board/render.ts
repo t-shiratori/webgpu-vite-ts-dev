@@ -47,7 +47,7 @@ export const render = ({
   renderPassEncoder.end()
 
   /**
-   * ンダリングパスによって記録されたコマンドをコマンドバッファでラップしてGPUに送信
+   * レンダリングパスによって記録されたコマンドをコマンドバッファでラップしてGPUに送信
    */
   GPU_DEVICE.queue.submit([commandEncoder.finish()])
 }

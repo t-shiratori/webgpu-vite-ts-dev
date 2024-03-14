@@ -3,7 +3,7 @@ const bytes = 4
 
 /** ユニフォームバッファのサイズ */
 export const uniformBufferSize =
-  1 * bytes /** time */ + 1 * bytes /** スロット調整用 */ + 2 * bytes /** window_size（x,y） */
+  bytes * 1 /** time */ + bytes * 1 /** スロット調整用 */ + bytes * 2 /** window_size（x,y） */
 
 /** ユニフォームバッファのデータ */
 export const uniformValues = new Float32Array(uniformBufferSize / 4)

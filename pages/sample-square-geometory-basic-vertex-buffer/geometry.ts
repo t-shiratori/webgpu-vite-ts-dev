@@ -5,11 +5,11 @@ export const squareVertexPositionSlotOffset = 0 // squareVertexArray内の頂点
 // prettier-ignore
 export const squareVertexArray = new Float32Array([
     //   X,    Y,
-    -0.8, -0.8, // Triangle 1 (Blue)
+    -0.8, -0.8, // Triangle 1
      0.8, -0.8,
      0.8,  0.8,
 
-    -0.8, -0.8, // Triangle 2 (Red)
+    -0.8, -0.8, // Triangle 2
      0.8,  0.8,
     -0.8,  0.8,
 ]);

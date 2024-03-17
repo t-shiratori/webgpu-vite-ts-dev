@@ -1,9 +1,9 @@
-/** 1つの値の容量 */
-const bytes = 4
+/** 1つの値のメモリサイズ */
+const bytesSize = 4
 
 /** ユニフォームバッファのサイズ */
 export const uniformBufferSize =
-  bytes * 1 /** time */ + bytes * 1 /** スロット調整用 */ + bytes * 2 /** window_size（x,y） */
+  bytesSize * 1 /** time */ + bytesSize * 1 /** スロット調整用 */ + bytesSize * 2 /** window_size（x,y） */
 
 /** ユニフォームバッファのデータ */
 export const uniformValues = new Float32Array(uniformBufferSize / 4)

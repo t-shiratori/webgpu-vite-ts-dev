@@ -1,15 +1,6 @@
-
-struct VertexOutput {
-  @builtin(position) Position : vec4<f32>, // GLSL の gl_Position に相当
-}
-
 @vertex
 fn vertexMain(
-  @location(0) position: vec4<f32>, // Pipeline の shaderLocation: 0 に対応
-) -> VertexOutput {
-
-  var output : VertexOutput;
-  output.Position = position;
-  
-  return output;
+  @location(0) pos: vec2<f32> // Pipeline の shaderLocation: 0 に対応
+) -> @builtin(position) vec4<f32> { // @builtin(position) は GLSL の gl_Position に相当
+  return vec4f(pos, 0, 1);
 }

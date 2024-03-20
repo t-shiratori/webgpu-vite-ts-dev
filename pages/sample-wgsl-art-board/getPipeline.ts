@@ -5,11 +5,17 @@ import { squarePositionOffset, squareVertexSize } from './geometry'
 type TGetPipelineArgs = {
   GPU_DEVICE: GPUDevice
   CANVAS_FORMAT: GPUTextureFormat
+  bindGroupLayout: GPUBindGroupLayout
 }
 
-export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT }: TGetPipelineArgs) => {
+export const getPipeline = ({ GPU_DEVICE, CANVAS_FORMAT, bindGroupLayout }: TGetPipelineArgs) => {
+  const pipelineLayout = GPU_DEVICE.createPipelineLayout({
+    label: 'Pipeline Layout',
+    bindGroupLayouts: [bindGroupLayout],
+  })
+
   return GPU_DEVICE.createRenderPipeline({
-    layout: 'auto',
+    layout: pipelineLayout,
     vertex: {
       module: GPU_DEVICE.createShaderModule({
         label: 'vertex shader',

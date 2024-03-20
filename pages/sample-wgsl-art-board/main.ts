@@ -41,10 +41,23 @@ initialize()
     indicesBuffer.unmap()
 
     /**
+     * Create BindGroupLayout
+     */
+    const bindGroupLayout = GPU_DEVICE.createBindGroupLayout({
+      entries: [
+        {
+          binding: 0,
+          visibility: GPUShaderStage.FRAGMENT,
+          buffer: {},
+        },
+      ],
+    })
+
+    /**
      * Create Pipeline
      * --------------------------------------*/
 
-    const pipeline = getPipeline({ GPU_DEVICE, CANVAS_FORMAT })
+    const pipeline = getPipeline({ GPU_DEVICE, CANVAS_FORMAT, bindGroupLayout })
 
     /**
      * Setting Uniform Buffer
@@ -61,7 +74,7 @@ initialize()
      * --------------------------------------*/
 
     const uniformBindGroup = GPU_DEVICE.createBindGroup({
-      layout: pipeline.getBindGroupLayout(0), // fragment.wgsl の @group(0) に対応
+      layout: bindGroupLayout,
       entries: [
         {
           binding: 0, // fragment.wgslの @group(0) @binding(0) に対応

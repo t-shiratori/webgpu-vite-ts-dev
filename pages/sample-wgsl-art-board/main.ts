@@ -20,8 +20,7 @@ initialize()
     })
 
     // Set data into buffer
-    const vertexBuferPositions = new Float32Array(verticesBuffer.getMappedRange())
-    vertexBuferPositions.set(squareVertexArray)
+    new Float32Array(verticesBuffer.getMappedRange()).set(squareVertexArray)
     verticesBuffer.unmap()
 
     /**
@@ -36,8 +35,7 @@ initialize()
     })
 
     // Set data into buffer
-    const indexBuferPositions = new Uint16Array(indicesBuffer.getMappedRange())
-    indexBuferPositions.set(squareIndexArray)
+    new Uint16Array(indicesBuffer.getMappedRange()).set(squareIndexArray)
     indicesBuffer.unmap()
 
     /**

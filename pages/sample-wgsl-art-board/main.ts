@@ -90,8 +90,8 @@ initialize()
     const loop = () => {
       render({
         GPU_CANVAS_CONTEXT,
-        pipeline,
         GPU_DEVICE,
+        pipeline,
         verticesBuffer,
         uniformBuffer,
         uniformBindGroup,

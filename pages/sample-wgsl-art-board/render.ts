@@ -3,8 +3,8 @@ import { writeUniformBuffer } from './writeUniformBuffer'
 
 type TRenderArgs = {
   GPU_CANVAS_CONTEXT: GPUCanvasContext
-  pipeline: GPURenderPipeline
   GPU_DEVICE: GPUDevice
+  pipeline: GPURenderPipeline
   verticesBuffer: GPUBuffer
   uniformBuffer: GPUBuffer
   uniformBindGroup: GPUBindGroup
@@ -13,8 +13,8 @@ type TRenderArgs = {
 
 export const render = ({
   GPU_CANVAS_CONTEXT,
-  pipeline,
   GPU_DEVICE,
+  pipeline,
   verticesBuffer,
   uniformBuffer,
   uniformBindGroup,

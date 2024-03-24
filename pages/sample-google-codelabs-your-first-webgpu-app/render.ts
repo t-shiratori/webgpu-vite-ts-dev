@@ -26,6 +26,9 @@ export const render = ({
   /** GPUに発行されるコマンドをエンコードするためのエンコーダーを作成 */
   const commandEncoder = GPU_DEVICE.createCommandEncoder()
 
+  /**
+   * コンピューティング用のパスを作成し、実行コマンドを記録しレンダリングパスを終了します。
+   */
   const computePass = commandEncoder.beginComputePass()
   // Compute work will go here...
   computePass.setPipeline(simulationPipeline)

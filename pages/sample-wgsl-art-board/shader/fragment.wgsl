@@ -1,3 +1,7 @@
+/**
+* reference: [An introduction to Shader Art Coding - YouTube](https://youtu.be/f4s1h2YETNY?feature=shared)
+*/
+
 struct Uniforms {
     time: f32,
     screen_size: vec2<f32>,

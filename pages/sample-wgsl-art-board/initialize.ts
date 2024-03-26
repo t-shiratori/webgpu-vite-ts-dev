@@ -32,11 +32,14 @@ export const initialize = async () => {
    * リサイズ処理
    */
 
+  const scale = window.devicePixelRatio
+
   const reportWindowSize = () => {
     if (!canvas) return
-    canvas.width = window.innerHeight
-    canvas.height = window.innerWidth
+    canvas.width = Math.floor(window.innerHeight * scale)
+    canvas.height = Math.floor(window.innerWidth * scale)
   }
+
   window.onresize = reportWindowSize
   window.dispatchEvent(new Event('resize'))
 

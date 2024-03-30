@@ -1,8 +1,8 @@
 /** 1つの値のメモリサイズ */
-const byteSize = 4
+const perByteSize = Float32Array.BYTES_PER_ELEMENT // 4
 
 /** squareVertexArray内の各頂点ごとのスキップサイズ */
-export const squareVertexSize = byteSize * 2
+export const squareVertexSize = perByteSize * 2
 
 /** squareVertexArray内の各頂点データのオフセットの位置 */
 export const squarePositionOffset = 0

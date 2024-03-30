@@ -1,5 +1,5 @@
 /** 1つの値のメモリサイズ */
-const bytesSize = 4
+const bytesSize = Float32Array.BYTES_PER_ELEMENT // 4
 
 /** ユニフォームバッファのサイズ */
 export const uniformBufferSize =
@@ -8,7 +8,7 @@ export const uniformBufferSize =
   bytesSize * 2 /** window_size（x,y） */
 
 /** ユニフォームバッファのデータ */
-export const uniformValues = new Float32Array(uniformBufferSize / 4)
+export const uniformValues = new Float32Array(uniformBufferSize / bytesSize)
 
 /** uniformValues内の time データのオフセットの位置を指定 */
 export const timeUniformOffset = 0

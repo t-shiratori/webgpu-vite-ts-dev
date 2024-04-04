@@ -1,19 +1,19 @@
 import { timeUniformOffset, uniformValues, screenSizeUniformOffset } from './uniform'
 
+const startTime = Date.now()
+
 type TArgs = {
   uniformBuffer: GPUBuffer
   GPU_DEVICE: GPUDevice
   GPU_CANVAS_CONTEXT: GPUCanvasContext
 }
 
-const start = Date.now()
-
 export const writeUniformBuffer = ({ uniformBuffer, GPU_DEVICE, GPU_CANVAS_CONTEXT }: TArgs) => {
   /**
    * Set time into uniformValues
    * --------------------------------------*/
 
-  const millis = (Date.now() - start) / 1000
+  const millis = (Date.now() - startTime) / 1000
   uniformValues.set([millis], timeUniformOffset)
 
   /**
